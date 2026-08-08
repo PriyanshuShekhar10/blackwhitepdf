@@ -1,0 +1,84 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getContent } from "../i18n";
+
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const c = getContent(lang);
+const a = c.aboutPage;
+const site = Astro.site ?? new URL("https://blackwhitepdf.com");
+const path = getRelativeLocaleUrl(lang, "about");
+const homeHref = getRelativeLocaleUrl(lang, "");
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  name: c.aboutMeta.title,
+  description: c.aboutMeta.description,
+  inLanguage: lang,
+  url: new URL(path, site).href,
+  isPartOf: {
+    "@type": "WebSite",
+    name: "BlackWhitePDF",
+    url: new URL("/", site).href,
+  },
+};
+---
+
+<BaseLayout
+  title={c.aboutMeta.title}
+  description={c.aboutMeta.description}
+  path={path}
+  current="about"
+  keywords={c.aboutMeta.keywords}
+  jsonLd={jsonLd}
+  lang={lang}
+  route="about"
+>
+  <main id="main" class="scroll-mt-4 border-b border-hairline bg-canvas">
+    <article class="mx-auto max-w-[720px] px-6 py-16 md:py-20">
+      <p class="mb-3 font-mono text-xs uppercase tracking-wide text-mute">{a.eyebrow}</p>
+      <h1
+        class="text-[34px] font-semibold leading-tight tracking-[-1.4px] text-balance md:text-[40px] md:tracking-[-1.8px]"
+      >
+        {a.h1}
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-body text-pretty">
+        {a.subhead}
+      </p>
+
+      <div class="prose-legal mt-10 space-y-5 text-base leading-relaxed text-body">
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">{a.whyBuilt.h2}</h2>
+        <p>{a.whyBuilt.p}</p>
+
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">{a.privacyStance.h2}</h2>
+        <p>{a.privacyStance.p}</p>
+
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">{a.contact.h2}</h2>
+        <p>
+          {a.contact.lead}
+          <a href={`mailto:${a.contact.email}`} class="text-link underline hover:text-link-deep" translate="no">{a.contact.email}</a>{a.contact.tail}
+        </p>
+
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">{a.tryIt.h2}</h2>
+        <p>
+          {a.tryIt.lead}
+          <a href={homeHref} class="text-link underline hover:text-link-deep">{a.tryIt.homeLinkText}</a>{a.tryIt.tail}
+        </p>
+      </div>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .prose-legal h2 {
+    margin-top: 2rem;
+  }
+  .prose-legal h2:first-child {
+    margin-top: 0;
+  }
+</style>

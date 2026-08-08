@@ -1,0 +1,161 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "Terms & Conditions — BlackWhitePDF";
+const description =
+  "Terms and Conditions for using BlackWhitePDF, the free online grayscale PDF and black and white PDF converter.";
+const path = "/terms/";
+const updated = "August 8, 2026";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: title,
+  description,
+  url: new URL(path, Astro.site ?? "https://blackwhitepdf.com").href,
+  dateModified: "2026-08-08",
+  isPartOf: {
+    "@type": "WebSite",
+    name: "BlackWhitePDF",
+    url: new URL("/", Astro.site ?? "https://blackwhitepdf.com").href,
+  },
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  current="terms"
+  keywords="blackwhitepdf terms, terms and conditions, grayscale pdf converter terms"
+  jsonLd={jsonLd}
+>
+  <main id="main" class="scroll-mt-4 border-b border-hairline bg-canvas">
+    <article class="mx-auto max-w-[720px] px-6 py-16 md:py-20">
+      <p class="mb-3 font-mono text-xs uppercase tracking-wide text-mute">Legal</p>
+      <h1
+        class="text-[34px] font-semibold leading-tight tracking-[-1.4px] text-balance md:text-[40px] md:tracking-[-1.8px]"
+      >
+        Terms &amp; Conditions.
+      </h1>
+      <p class="mt-3 text-sm text-mute">Last updated: {updated}</p>
+      <p class="mt-4 text-base leading-relaxed text-body">
+        These Terms &amp; Conditions (“Terms”) govern your access to and use of the
+        BlackWhitePDF website and converter (the “Service”). By using the Service, you agree
+        to these Terms. If you do not agree, do not use the Service.
+      </p>
+
+      <div class="mt-10 space-y-5 text-base leading-relaxed text-body">
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">1. The Service</h2>
+        <p>
+          BlackWhitePDF provides a free, browser-based tool to convert PDFs to grayscale PDF
+          or black and white PDF, including optional crop/deskew and quality controls. The
+          Service is offered “as is” for personal and professional use subject to these Terms.
+        </p>
+
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">2. Eligibility</h2>
+        <p>
+          You must be able to form a binding contract under applicable law to use the
+          Service. If you use the Service on behalf of an organization, you represent that
+          you have authority to bind that organization to these Terms.
+        </p>
+
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">3. Your content and responsibilities</h2>
+        <p>
+          You retain all rights to the PDFs and other files you process. You are solely
+          responsible for ensuring you have the legal right to convert, modify, download,
+          and use those files. Do not use the Service to process content that is illegal,
+          infringing, or that you are not authorized to handle.
+        </p>
+        <p>
+          Because conversion runs in your browser, you are also responsible for keeping
+          downloaded outputs and for verifying that results meet your quality, print, or
+          archival needs before relying on them.
+        </p>
+
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">4. Acceptable use</h2>
+        <p>You agree not to:</p>
+        <ul class="list-disc space-y-2 pl-5">
+          <li>Attempt to disrupt, overload, scrape abusively, or reverse engineer the Service except as allowed by law.</li>
+          <li>Use the Service to distribute malware or to violate others’ privacy or intellectual property rights.</li>
+          <li>Misrepresent the Service as providing server-side document storage or guaranteed OCR accuracy.</li>
+          <li>Bypass rate limits, security controls, or access restrictions if implemented.</li>
+        </ul>
+
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">5. Intellectual property</h2>
+        <p>
+          The website design, branding, copy, and software that make up the Service are
+          owned by us or our licensors. You may not copy, modify, or redistribute our
+          branding or site code except as permitted by applicable open-source licenses
+          included with third-party libraries, or with our prior written consent.
+        </p>
+
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">6. No professional advice</h2>
+        <p>
+          Output from the converter is a technical transformation of your file. It is not
+          legal, medical, archival, or print-compliance advice. You are responsible for
+          checking the downloaded PDF before filing, printing, or publishing.
+        </p>
+
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">7. Availability and changes</h2>
+        <p>
+          We may modify, suspend, or discontinue any part of the Service at any time,
+          including free features, without liability. We may also update these Terms; the
+          “Last updated” date will change when we do. Continued use after an update
+          constitutes acceptance of the revised Terms.
+        </p>
+
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">8. Disclaimers</h2>
+        <p>
+          THE SERVICE IS PROVIDED “AS IS” AND “AS AVAILABLE” WITHOUT WARRANTIES OF ANY
+          KIND, WHETHER EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A
+          PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. We do not warrant that conversion
+          will be uninterrupted, error-free, or that every page will look perfect for every
+          input file.
+        </p>
+
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">9. Limitation of liability</h2>
+        <p>
+          TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE AND OUR AFFILIATES WILL NOT BE LIABLE
+          FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY
+          LOSS OF DATA, PROFITS, OR BUSINESS, ARISING FROM YOUR USE OF THE SERVICE. OUR
+          TOTAL LIABILITY FOR ANY CLAIM RELATED TO THE SERVICE WILL NOT EXCEED THE GREATER
+          OF THE AMOUNT YOU PAID US FOR THE SERVICE IN THE TWELVE MONTHS BEFORE THE CLAIM
+          OR ONE HUNDRED U.S. DOLLARS (US&nbsp;$100). Some jurisdictions do not allow certain
+          limitations; in those cases, our liability is limited to the fullest extent
+          permitted.
+        </p>
+
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">10. Indemnity</h2>
+        <p>
+          You agree to indemnify and hold us harmless from claims, damages, losses, and
+          expenses (including reasonable legal fees) arising from your use of the Service,
+          your files, or your violation of these Terms or applicable law.
+        </p>
+
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">11. Privacy</h2>
+        <p>
+          Our handling of information is described in the
+          <a href="/privacy/" class="text-link underline hover:text-link-deep">Privacy Policy</a>,
+          which is incorporated by reference into these Terms.
+        </p>
+
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">12. Governing law</h2>
+        <p>
+          These Terms are governed by the laws applicable in the jurisdiction where the
+          site operator is established, without regard to conflict-of-law rules, unless
+          mandatory consumer protections in your country provide otherwise. Courts in that
+          jurisdiction will have exclusive venue for disputes, subject to applicable
+          consumer rights.
+        </p>
+
+        <h2 class="text-xl font-semibold tracking-[-0.6px] text-ink">13. Contact</h2>
+        <p>
+          Questions about these Terms? Reach us through our
+          <a href="/contact/" class="text-link underline hover:text-link-deep">Contact</a> page,
+          or see the <a href="/about/" class="text-link underline hover:text-link-deep">About Us</a> page.
+        </p>
+      </div>
+    </article>
+  </main>
+</BaseLayout>

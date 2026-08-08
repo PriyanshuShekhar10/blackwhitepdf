@@ -1,0 +1,53 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "500 — Something Went Wrong | BlackWhitePDF";
+const description =
+  "An unexpected error occurred. Try again, or head back to the BlackWhitePDF converter to turn a color PDF into a grayscale or black and white PDF.";
+---
+
+<BaseLayout title={title} description={description} path="/500/" noindex>
+  <main
+    id="main"
+    class="grid min-h-[60vh] place-items-center border-b border-hairline bg-canvas px-6 py-20"
+  >
+    <div class="mx-auto max-w-[560px] text-center">
+      <p class="font-mono text-sm uppercase tracking-wide text-mute">Error 500</p>
+      <p
+        class="mt-2 font-mono text-[88px] font-semibold leading-none tracking-[-4px] text-ink md:text-[120px]"
+      >
+        500
+      </p>
+      <h1
+        class="mt-4 text-[28px] font-semibold leading-tight tracking-[-1px] text-balance md:text-[32px]"
+      >
+        Something went wrong on our end.
+      </h1>
+      <p class="mx-auto mt-4 max-w-md text-base leading-relaxed text-body text-pretty">
+        An unexpected error occurred. Your files are always processed in your
+        browser and are never uploaded, so nothing was sent anywhere. Please try
+        again in a moment.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="/"
+          data-astro-reload
+          class="inline-flex h-11 items-center justify-center rounded-md bg-ink px-5 text-sm font-medium text-white transition-colors hover:bg-ink/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 dark:text-canvas-soft"
+          >Back to converter</a
+        >
+        <button
+          type="button"
+          onclick="location.reload()"
+          class="inline-flex h-11 items-center justify-center rounded-md border border-hairline bg-canvas px-5 text-sm font-medium text-ink transition-colors hover:bg-canvas-soft-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40"
+          >Try again</button
+        >
+      </div>
+
+      <p class="mt-8 text-sm text-mute">
+        If this keeps happening, please
+        <a href="/contact/" class="text-link underline hover:text-link-deep">contact us</a>.
+      </p>
+    </div>
+  </main>
+</BaseLayout>

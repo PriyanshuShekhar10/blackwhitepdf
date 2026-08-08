@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="BlackWhitePDF">
+  <style>
+    .tile { fill: #171717; }
+    .doc { fill: #ffffff; }
+    .line-a { fill: #c4c4c4; }
+    .line-b { fill: #8a8a8a; }
+    .line-c { fill: #171717; }
+    @media (prefers-color-scheme: dark) {
+      .tile { fill: #fafafa; }
+      .doc { fill: #171717; }
+      .line-a { fill: #5a5a5a; }
+      .line-b { fill: #8a8a8a; }
+      .line-c { fill: #fafafa; }
+    }
+  </style>
+  <!-- Ink tile; adapts for dark browser chrome -->
+  <rect class="tile" width="32" height="32" rx="8" />
+  <!-- Document + grayscale lines (reads as B/W conversion) -->
+  <path
+    class="doc"
+    d="M9 5h9.2L23 9.8V27H9V5z"
+  />
+  <path class="tile" d="M18.2 5V9.8H23L18.2 5z" />
+  <rect class="line-a" x="12" y="14" width="8" height="2" rx="1" />
+  <rect class="line-b" x="12" y="18" width="6.5" height="2" rx="1" />
+  <rect class="line-c" x="12" y="22" width="5" height="2" rx="1" />
+</svg>

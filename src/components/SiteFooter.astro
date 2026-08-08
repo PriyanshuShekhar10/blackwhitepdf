@@ -1,0 +1,39 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getContent } from "../i18n";
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = "en" } = Astro.props;
+const f = getContent(lang).footer;
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-hairline bg-ink text-white dark:bg-canvas dark:text-ink">
+  <div class="mx-auto max-w-[1200px] px-6 py-12">
+    <div class="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+      <div>
+        <p class="font-mono text-xs uppercase tracking-wide text-white/60">
+          {f.eyebrow}
+        </p>
+        <p class="mt-2 max-w-md text-sm leading-relaxed text-white/80">
+          {f.blurb}
+        </p>
+      </div>
+
+      <nav aria-label="Footer" class="flex flex-col gap-2 text-sm">
+        <a href={getRelativeLocaleUrl(lang, "")} data-astro-reload class="rounded text-white/80 underline-offset-4 hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70">{f.converter}</a>
+        <a href={getRelativeLocaleUrl(lang, "about")} data-astro-reload class="rounded text-white/80 underline-offset-4 hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70">{f.about}</a>
+        <a href="/privacy/" data-astro-reload class="rounded text-white/80 underline-offset-4 hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70">{f.privacy}</a>
+        <a href="/terms/" data-astro-reload class="rounded text-white/80 underline-offset-4 hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70">{f.terms}</a>
+        <a href="/contact/" data-astro-reload class="rounded text-white/80 underline-offset-4 hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70">{f.contact}</a>
+      </nav>
+    </div>
+
+    <p class="mt-10 font-mono text-xs text-white/50">
+      <span translate="no">© {year} BlackWhitePDF</span> {f.copyrightTail}
+    </p>
+  </div>
+</footer>

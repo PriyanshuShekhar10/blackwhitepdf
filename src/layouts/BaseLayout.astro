@@ -1,0 +1,171 @@
+---
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { LOCALES, hreflangOf, isRtl, getAlternates } from "../i18n";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  current?: "home" | "about" | "privacy" | "terms" | "contact";
+  keywords?: string;
+  ogType?: string;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Emit a noindex robots directive (used for error pages). */
+  noindex?: boolean;
+  /** BCP-47-ish content language code (en, es, ...). Defaults to en. */
+  lang?: string;
+  /**
+   * Locale-agnostic route for hreflang alternates: "" (home) or "about".
+   * `null` (default) means single-language page — no alternates are emitted.
+   */
+  route?: string | null;
+}
+
+const {
+  title,
+  description,
+  path,
+  current = "home",
+  keywords,
+  ogType = "website",
+  jsonLd,
+  noindex = false,
+  lang = "en",
+  route = null,
+} = Astro.props;
+
+const robots = noindex
+  ? "noindex, follow"
+  : "index, follow, max-image-preview:large";
+
+const htmlLang = hreflangOf(lang);
+const dir = isRtl(lang) ? "rtl" : "ltr";
+const ogLocale = htmlLang.replace("-", "_");
+const alternates = route !== null ? getAlternates(route) : [];
+const ogAlternateLocales =
+  route !== null
+    ? LOCALES.filter((l) => l.code !== lang).map((l) =>
+        l.hreflang.replace("-", "_")
+      )
+    : [];
+
+const site = Astro.site ?? new URL("https://blackwhitepdf.com");
+const pageUrl = new URL(path, site).href;
+const siteUrl = new URL("/", site).href;
+const ogImage = new URL("/og.jpg", site).href;
+const pageSchemas = jsonLd
+  ? Array.isArray(jsonLd)
+    ? jsonLd
+    : [jsonLd]
+  : [];
+
+// Site-wide identity schema, present on every page for consistent entity signals.
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "BlackWhitePDF",
+  url: siteUrl,
+  description:
+    "Free private grayscale PDF and black and white PDF converter that cleans photographed pages in your browser.",
+};
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "BlackWhitePDF",
+  url: siteUrl,
+  logo: new URL("/icon-512.png", site).href,
+};
+const schemas = [websiteSchema, organizationSchema, ...pageSchemas];
+---
+
+<!doctype html>
+<html lang={htmlLang} dir={dir}>
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline>
+      // Apply the saved/system theme before paint to avoid a flash of the wrong theme.
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var dark = saved
+            ? saved === "dark"
+            : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var root = document.documentElement;
+          root.classList.toggle("dark", dark);
+          root.style.colorScheme = dark ? "dark" : "light";
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="apple-mobile-web-app-title" content="BlackWhitePDF" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
+    <meta name="robots" content={robots} />
+    <meta name="author" content="BlackWhitePDF" />
+    <link rel="canonical" href={pageUrl} />
+
+    {
+      alternates.map((alt) => (
+        <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+      ))
+    }
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="BlackWhitePDF" />
+    <meta property="og:locale" content={ogLocale} />
+    {
+      ogAlternateLocales.map((loc) => (
+        <meta property="og:locale:alternate" content={loc} />
+      ))
+    }
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Original photographed PDF page next to a cleaned grayscale black and white PDF scan"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta
+      name="twitter:image:alt"
+      content="Original photographed PDF page next to a cleaned grayscale black and white PDF scan"
+    />
+
+    {
+      schemas.map((schema) => (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      ))
+    }
+    <slot name="head" />
+  </head>
+  <body class="flex min-h-screen flex-col font-sans text-ink antialiased">
+    <a
+      href="#main"
+      class="sr-only rounded-md bg-ink px-3 py-2 text-sm text-white focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 dark:text-canvas-soft"
+      >Skip to content</a
+    >
+    <SiteHeader current={current} lang={lang} route={route} />
+    <div class="flex-1">
+      <slot />
+    </div>
+    <SiteFooter lang={lang} />
+  </body>
+</html>

@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const title = "404 — Page Not Found | BlackWhitePDF";
+const description =
+  "This page could not be found. Head back to the BlackWhitePDF converter to turn a color PDF into a grayscale or black and white PDF.";
+---
+
+<BaseLayout title={title} description={description} path="/404/" noindex>
+  <main
+    id="main"
+    class="grid min-h-[60vh] place-items-center border-b border-hairline bg-canvas px-6 py-20"
+  >
+    <div class="mx-auto max-w-[560px] text-center">
+      <p class="font-mono text-sm uppercase tracking-wide text-mute">Error 404</p>
+      <p
+        class="mt-2 font-mono text-[88px] font-semibold leading-none tracking-[-4px] text-ink md:text-[120px]"
+      >
+        404
+      </p>
+      <h1
+        class="mt-4 text-[28px] font-semibold leading-tight tracking-[-1px] text-balance md:text-[32px]"
+      >
+        This page could not be found.
+      </h1>
+      <p class="mx-auto mt-4 max-w-md text-base leading-relaxed text-body text-pretty">
+        The link may be broken or the page may have moved. You can head back to
+        the converter and turn a color PDF into a grayscale or black and white
+        PDF in a few clicks.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="/"
+          data-astro-reload
+          class="inline-flex h-11 items-center justify-center rounded-md bg-ink px-5 text-sm font-medium text-white transition-colors hover:bg-ink/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40 dark:text-canvas-soft"
+          >Back to converter</a
+        >
+        <a
+          href="/about/"
+          data-astro-reload
+          class="inline-flex h-11 items-center justify-center rounded-md border border-hairline bg-canvas px-5 text-sm font-medium text-ink transition-colors hover:bg-canvas-soft-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink/40"
+          >About BlackWhitePDF</a
+        >
+      </div>
+
+      <p class="mt-8 text-sm text-mute">
+        Looking for something specific? Try the
+        <a href="/#faq" class="text-link underline hover:text-link-deep">FAQ</a>
+        or
+        <a href="/contact/" class="text-link underline hover:text-link-deep">contact us</a>.
+      </p>
+    </div>
+  </main>
+</BaseLayout>
