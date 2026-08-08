@@ -1,4 +1,14 @@
+# Search engines and AI assistants are welcome here.
+#
+# Content signals (https://contentsignals.org) — we explicitly permit:
+#   search:   yes  — index the site and show it in search results
+#   ai-input: yes  — use content in real-time AI answers (RAG / grounding),
+#                    e.g. ChatGPT, Claude, Perplexity, Google AI Overviews
+#   ai-train: yes  — allow use for training / fine-tuning AI models
+#   use:      full — no restriction on how AI systems consume the content
+
 User-agent: *
+Content-Signal: search=yes,ai-input=yes,ai-train=yes,use=full
 Allow: /
 
 Sitemap: https://blackwhitepdf.com/sitemap-index.xml

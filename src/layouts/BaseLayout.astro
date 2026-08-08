@@ -84,6 +84,20 @@ const schemas = [websiteSchema, organizationSchema, ...pageSchemas];
 <html lang={htmlLang} dir={dir}>
   <head>
     <meta charset="utf-8" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-MC60VJECGZ"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-MC60VJECGZ");
+    </script>
     <script is:inline>
       // Apply the saved/system theme before paint to avoid a flash of the wrong theme.
       (function () {
